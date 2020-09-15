@@ -1,4 +1,4 @@
-﻿
+
 #include <iostream>
 #include <stack>
 #include <string>
@@ -12,6 +12,7 @@ private:
 	double  m_cost;
 public:
     friend class Tovarov;
+
 	Wear() {  };
     Wear (int id,std::string name)
     {
@@ -20,15 +21,7 @@ public:
 		m_wearname = name;
 		m_cost = 0;
     }
-    void show()
-    {
-		std::cout << std::endl;
-		std::cout << "Wear data:  " <<std::endl;
-		std::cout <<"id:  "<<m_id<<std::endl;
-		std::cout << "name:  " << m_wearname << std::endl;
-		std::cout << "cost:  " << m_cost << std::endl;
-			        
-    }
+	friend  void show(Wear& name);
 	~Wear() {};
 };
 class Tovarov
@@ -45,15 +38,8 @@ public:
 		m_tovarovname = name;
 		m_tovarovfam = fam;
 	}
-	void showTov()
-	{
-		std::cout << std::endl;
-		std::cout << "Tovarov data:  " << std::endl;
-		std::cout <<"id: "<< m_tovarovid << std::endl;
-		std::cout <<"name: "<< m_tovarovname << std::endl;
-		std::cout <<"fam: "<< m_tovarovfam << std::endl;
-
-	}
+	friend void showTov(Tovarov& name);
+	
     void setCost(Wear &name,double cost)
     {	
 		name.m_cost = cost;
@@ -62,6 +48,25 @@ public:
 
 	~Tovarov() {};
 };
+
+void show(Wear& name)
+{
+	std::cout << std::endl;
+	std::cout << "Wear data:  " << std::endl;
+	std::cout << "id:  " <<name.m_id << std::endl;
+	std::cout << "name:  " << name.m_wearname << std::endl;
+	std::cout << "cost:  " << name.m_cost << std::endl;
+
+}
+void showTov(Tovarov& name)
+{
+	std::cout << std::endl;
+	std::cout << "Tovarov data:  " << std::endl;
+	std::cout << "id: " << name.m_tovarovid << std::endl;
+	std::cout << "name: " <<name.m_tovarovname << std::endl;
+	std::cout << "fam: " << name.m_tovarovfam << std::endl;
+
+}
 int main()
 {	
 	bool fid = true;
@@ -100,7 +105,7 @@ int main()
 	} while (fname);
 
 	Wear w1(id, name);
-	w1.show();
+	show(w1);
 	std::cout << "Tovarov info: ";
 	do
 	{
@@ -136,11 +141,11 @@ int main()
 		std::cin.ignore(std::cin.rdbuf()->in_avail());
 	} while (ffam);
 	Tovarov t1(id, name, fam);
-	t1.showTov();
+	showTov(t1);
 	std::cout << "Set cost:  ";
 	std::cin >> cost;
 	t1.setCost(w1, cost);
-	w1.show();
+	show(w1);
 	Wear mas[3] =
 		{
 			Wear(14,"blouse"),
@@ -157,13 +162,13 @@ int main()
 	for (int i = 0; i < 3; i++)
 	{
 		std::cout << std::endl;
-		ms[i].showTov();
+		showTov(ms[i]);
 		ms[i].setCost(mas[i], rand() % 20);
 
 	}
 	for (int i = 0; i < 3; i++)
 	{
-		mas[i].show();
+		show(mas[i]);
 	}
     return 0;
 }
