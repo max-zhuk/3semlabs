@@ -8,18 +8,6 @@ protected:
 	int f_duration;
 	int f_rate;
 public:
-	Film()
-	{
-		f_filmname = "0";
-		f_duration = 0;
-		f_rate = 0;
-	}
-	Film(std::string filmname, int duration, int rate)
-	{
-		f_filmname = filmname;
-		f_duration = duration;
-		f_rate = rate;
-	}
 	virtual void Output()
 	{
 		
@@ -30,7 +18,7 @@ public:
 
 	}
 };
-class ShortLength :virtual public Film
+class ShortLength : public Film
 {
 protected:
 	std::string s_topic;
@@ -58,7 +46,7 @@ public:
 	}
 };
 
-class Clip :virtual public ShortLength
+class Clip : public ShortLength
 {
 protected:
 	std::string c_bandname;
@@ -88,7 +76,7 @@ public:
 	}
 };
 
-class FullLength:virtual public Film
+class FullLength: public Film
 {
 protected:
 	std::string fu_genre;
