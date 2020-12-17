@@ -107,7 +107,7 @@ int main() {
 			{
 				for (int i = 0; i < container.length; i++) {
 
-					ListWear::Iterator it(container.begin()); d = 0;
+					ListWear::Iterator it(container.begin());
 
 					for (int j = 0; j < container.length - 1; j++) {
 
