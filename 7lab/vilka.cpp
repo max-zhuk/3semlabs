@@ -67,7 +67,7 @@ int main() {
 			std::cin >> number;
 			std::cout << '\n';
 			object.idSetter(number);
-			std::cout << "Do you want to continue? y/n" << '\n';
+			
 			std::cout << '\n';
 			container.add(object);
 		}
